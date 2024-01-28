@@ -64,14 +64,14 @@ const BlogDetails = () => {
           <p>{blogsDetails?.description}</p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form  onSubmit={handleSubmit(onSubmit)}>
           <input
             {...register("comment")}
             type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full max-w-xs"
+            placeholder="Comment Here"
+            className="input input-bordered md:w-full  md:max-w-sm mx-w-xs bg-gray-500 text-white mx-4 my-3"
           />
-          <input type="submit" />
+          <input className="btn font-bold bg-gray-500 text-white hover:text-black ml-4 mb-4" type="submit" />
         </form>
       </div>
     </div>
