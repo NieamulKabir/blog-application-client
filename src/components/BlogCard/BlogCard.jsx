@@ -11,7 +11,7 @@ const BlogCard = ({ blog }) => {
 
           <p>{description.slice(0, 150)}...</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <button className="btn bg-gray-700 text-white hover:bg-slate-600">See More..</button>
           </div>
         </div>
       </div>
