@@ -1,12 +1,30 @@
-
+import { useQuery } from "@tanstack/react-query";
+import BlogCard from "../../components/BlogCard/BlogCard";
 
 const Blogs = () => {
-    return (
-        <div className="bg-gray-800 text-white font-mono">
-            <h1 className="text-center text">Our Web-Dev Blogs</h1>
-            
-        </div>
-    );
+  const {
+    data: blogs = [],
+    isLoading: loading,
+    refetch,
+  } = useQuery({
+    queryKey: ["blog"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/blogs");
+      return res.json();
+    },
+  });
+  console.log(blogs);
+  return (
+    <div className="bg-gray-600 text-white font-mono pt-16">
+      <h1 className="text-center text-3xl py-6 font-bold">Our Web-Dev Blogs</h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 w-3/4 mx-auto gap-10">
+        {blogs?.data?.map((blog) => (
+          <BlogCard key={blog._id} blog={blog} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Blogs;
