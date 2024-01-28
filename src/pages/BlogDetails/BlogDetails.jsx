@@ -1,6 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const BlogDetails = () => {
   let { id } = useParams();
@@ -16,8 +20,35 @@ const BlogDetails = () => {
       return res.json();
     },
   });
-  console.log(blogsDetails);
 
+  const { data: allComments = [] } = useQuery({
+    queryKey: ["allComments"],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/comments`);
+      return res.json();
+    },
+  });
+  console.log(allComments.data);
+
+  const blogComments = allComments?.data?.filter(
+    (blogComment) => blogComment.blogId === id
+  );
+  console.log(blogComments);
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (data) => {
+    const blogId = id;
+    const value = {
+      blogId,
+      comment: data.comment,
+    };
+    const url = `http://localhost:5000/comment`;
+    axios.post(url, value).then((res) => {
+      if (res.data.insertedId) {
+        toast("Added successfully");
+        reset();
+      }
+    });
+  };
   return (
     <div className="pt-28 pb-10 text-white">
       <div className="card card-compact w-3/4 mx-auto bg-gray-800 shadow-xl">
@@ -26,10 +57,22 @@ const BlogDetails = () => {
         </figure>
         <div className="card-body">
           <h2 className="card-title text-3xl">{blogsDetails?.title}</h2>
-          <p className="text-green-600 font-mono font-bold"> <span>Author</span>: {blogsDetails?.author}</p>
+          <p className="text-green-600 font-mono font-bold">
+            {" "}
+            <span>Author</span>: {blogsDetails?.author}
+          </p>
           <p>{blogsDetails?.description}</p>
-          
         </div>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            {...register("comment")}
+            type="text"
+            placeholder="Type here"
+            className="input input-bordered w-full max-w-xs"
+          />
+          <input type="submit" />
+        </form>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ const Blogs = () => {
       return res.json();
     },
   });
-  console.log(blogs);
+ 
   return (
     <div className="bg-gray-600 text-white font-mono py-16">
       <h1 className="text-center text-3xl py-6 font-bold">Our Web-Dev Blogs</h1>
