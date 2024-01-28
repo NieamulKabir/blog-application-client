@@ -1,5 +1,7 @@
+import { NavLink } from "react-router-dom";
+
 const BlogCard = ({ blog }) => {
-  const { title, image, description } = blog;
+  const { _id,title, image, description } = blog;
   return (
     <div>
       <div className="card card-compact  bg-slate-700 shadow-xl cursor-pointer">
@@ -11,7 +13,9 @@ const BlogCard = ({ blog }) => {
 
           <p>{description.slice(0, 150)}...</p>
           <div className="card-actions justify-end">
+            <NavLink to={`/blogs/${_id}`}>
             <button className="btn bg-gray-700 text-white hover:bg-slate-600">See More..</button>
+            </NavLink>
           </div>
         </div>
       </div>

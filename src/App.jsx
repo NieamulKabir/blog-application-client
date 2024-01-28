@@ -1,13 +1,11 @@
-import MainLayout from "./layout/MainLayout"
+import MainLayout from "./layout/MainLayout";
 
 function App() {
-
-
   return (
-    <div >
+    <div className="bg-gray-700">
       <MainLayout />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
