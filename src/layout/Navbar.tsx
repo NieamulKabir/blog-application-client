@@ -65,6 +65,16 @@ const Navbar = () => {
               <button className="">Add-Blog</button>
             </NavLink>
           </li>
+          <li
+            className={`${
+              active === "/wishList" ? "text-green-300" : "text-white"
+            } hover:text-white text-[18px] font-medium cursor-pointer`}
+            onClick={() => setActive("/wishList")}
+          >
+            <NavLink to="/wishList">
+              <button className="">WishList</button>
+            </NavLink>
+          </li>
 
           {/* login  */}
         </ul>
@@ -100,6 +110,16 @@ const Navbar = () => {
               >
                 <NavLink to="/blogs">
                   <button className="">Blogs</button>
+                </NavLink>
+              </li>
+              <li
+                className={`${
+                  active === "/addBlog" ? "text-green-300" : "text-white"
+                } hover:text-white text-[18px] font-medium cursor-pointer`}
+                onClick={() => setActive("/addBlog")}
+              >
+                <NavLink to="/addBlog">
+                  <button className="">Add-Blog</button>
                 </NavLink>
               </li>
              

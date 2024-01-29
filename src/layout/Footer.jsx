@@ -2,8 +2,8 @@ import { ImBlog } from "react-icons/im";
 
 const Footer = () => {
   return (
-    <div className="">
-      <footer className="footer items-center p-4 bg-gray-900 text-neutral-content px-10">
+    
+      <footer className="footer items-center p-4 bg-gray-900 text-neutral-content px-10 ">
         <aside className="items-center grid-flow-col">
         <p className="text-white text-3xl mr-2 pt-2">  <ImBlog /> </p>
           <p>Copyright © 2024 - All right reserved - Web-Dev</p>
@@ -44,7 +44,7 @@ const Footer = () => {
           </a>
         </nav>
       </footer>
-    </div>
+    
   );
 };
 

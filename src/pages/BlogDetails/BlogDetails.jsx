@@ -52,32 +52,50 @@ const BlogDetails = () => {
     (blogComment) => blogComment.blogId === id
   );
 
-  let wishlist = JSON.parse(localStorage.getItem("wishlist"));
-  const handleBookMark = (id) => {
-    if (wishlist.length == 0) {
-      wishlist.push(w);
+  //wishlist functionality
+  // const handleAddWishlist = () => {
+  //   const info = {
+  //     id,
+  //     wishlist: "true",
+  //   };
+
+  //   const prevWishlist = JSON.parse(localStorage.getItem("wishlist"));
+  //   console.log(prevWishlist);
+  //   if (prevWishlist) {
+  //     const isExist = prevWishlist?.find((w) => w.id === id);
+  //     console.log(isExist);
+  //     if (isExist) {
+  //       return JSON.stringify(localStorage.removeItem(isExist));
+  //     }
+  //     localStorage.setItem("wishlist", JSON.stringify([...prevWishlist, info]));
+  //   } else {
+  //     localStorage.setItem("wishlist", JSON.stringify([info]));
+  //   }
+  // };
+  const handleAddWishlist = () => {
+    const info = {
+      id,
+      title: blogsDetails.title,
+      wishlist: "true",
+    };
+
+    const prevWishlist = JSON.parse(localStorage.getItem("wishlist"));
+
+    console.log(prevWishlist);
+    if (prevWishlist) {
+      const indexToRemove = prevWishlist.findIndex((w) => w.id === id);
+      if (indexToRemove !== -1) {
+        prevWishlist.splice(indexToRemove, 1); // Remove the item from the array
+        localStorage.setItem("wishlist", JSON.stringify(prevWishlist));
+        toast.success("Item removed from wishlist");
+        return;
+      }
+      localStorage.setItem("wishlist", JSON.stringify([...prevWishlist, info]));
+      toast.success("Add WishList Successfully");
+    } else {
+      localStorage.setItem("wishlist", JSON.stringify([info]));
     }
   };
-  // const prevBookmark = localStorage.getItem("bookmark");
-  // const oldBookmark = JSON.parse(prevBookmark);
-  // if (oldBookmark) {
-  //   const isExist = oldBookmark.find((p) => p.blogId === blogId);
-  //   if (isExist) {
-  //    localStorage.removeItem(isExist)
-  //   } else {
-  //     localStorage.setItem(
-  //       "bookmark",
-  //       JSON.stringify([...oldBookmark, info])
-  //     );
-  //   }
-  // } else {
-  //   localStorage.setItem("bookmark", JSON.stringify({ info }));
-  //   console.log("nai");
-  // }
-
-  //   const handleRemove=(id)=>{
-  // let temp =
-  //   }
 
   return (
     <div className="pt-28 pb-10 text-white">
@@ -89,11 +107,8 @@ const BlogDetails = () => {
           <div className="flex justify-between items-center">
             <h2 className="card-title text-3xl">{blogsDetails?.title}</h2>
             <div>
-              <button
-                onClick={handleBookMark}
-                className="btn bg-gray-700 text-white hover:bg-slate-800"
-              >
-                BookMark
+              <button className="btn" onClick={handleAddWishlist}>
+                WishList
               </button>
             </div>
           </div>

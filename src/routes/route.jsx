@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Blogs from "../pages/Blogs/Blogs";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
 import AddBlog from "../pages/AddBlog/AddBlog";
+import Wishlist from "../pages/Wishlist/Wishlist";
 
 const routes = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const routes = createBrowserRouter([
       {
         path:'/addBlog',
         element:<AddBlog />
+      },
+      {
+        path:'/wishList',
+        element:<Wishlist />
       }
     ],
   },
