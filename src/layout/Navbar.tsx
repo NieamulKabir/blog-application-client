@@ -122,6 +122,16 @@ const Navbar = () => {
                   <button className="">Add-Blog</button>
                 </NavLink>
               </li>
+              <li
+                className={`${
+                  active === "/wishList" ? "text-green-300" : "text-white"
+                } hover:text-white text-[18px] font-medium cursor-pointer`}
+                onClick={() => setActive("/wishList")}
+              >
+                <NavLink to="/wishList">
+                  <button className="">WishList</button>
+                </NavLink>
+              </li>
              
 
               {/* login  */}
