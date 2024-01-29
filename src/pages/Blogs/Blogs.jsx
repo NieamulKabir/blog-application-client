@@ -14,6 +14,8 @@ const Blogs = () => {
       return res.json();
     },
   });
+
+  //delete blog functionality
   const handleDelete = (id) => {
     console.log(id);
     fetch(`http://localhost:5000/blogs/${id}`, {
@@ -22,15 +24,15 @@ const Blogs = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
-         
           toast.success("Blog Deleted Successfully");
-          refetch()
+          refetch();
         }
       })
       .catch((er) => {
         toast.error("Blog Not Deleted");
       });
   };
+
   return (
     <div className="bg-gray-600 text-white font-mono py-16">
       <h1 className="text-center text-3xl py-6 font-bold">Our Web-Dev Blogs</h1>

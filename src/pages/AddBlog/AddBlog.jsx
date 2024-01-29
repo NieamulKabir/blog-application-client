@@ -13,7 +13,7 @@ const AddBlog = () => {
       description: data.description,
       image: data.image,
     };
-    console.log(blogData);
+    
     const url = `http://localhost:5000/blogs`;
     axios.post(url, blogData).then((res) => {
       if (res.data.insertedId) {
