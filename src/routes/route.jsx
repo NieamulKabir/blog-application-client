@@ -3,6 +3,7 @@ import App from "../App";
 import Home from "../pages/Home";
 import Blogs from "../pages/Blogs/Blogs";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
+import AddBlog from "../pages/AddBlog/AddBlog";
 
 const routes = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const routes = createBrowserRouter([
         path: '/blogs/:id',
         element: <BlogDetails />,
       },
+      {
+        path:'/addBlog',
+        element:<AddBlog />
+      }
     ],
   },
 ]);

@@ -55,7 +55,16 @@ const Navbar = () => {
               <button className="">Blogs</button>
             </NavLink>
           </li>
-          
+          <li
+            className={`${
+              active === "/addBlog" ? "text-green-300" : "text-white"
+            } hover:text-white text-[18px] font-medium cursor-pointer`}
+            onClick={() => setActive("/addBlog")}
+          >
+            <NavLink to="/addBlog">
+              <button className="">Add-Blog</button>
+            </NavLink>
+          </li>
 
           {/* login  */}
         </ul>
