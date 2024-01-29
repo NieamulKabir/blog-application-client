@@ -4,7 +4,7 @@ const BlogCard = ({ blog }) => {
   const { _id,title, image, description } = blog;
   return (
     <div>
-      <div className="card card-compact  bg-slate-700 shadow-xl cursor-pointer">
+      <div className="card card-compact  bg-slate-700 shadow-xl cursor-pointer md:h-[500px]">
         <figure>
           <img className="bg-cover w-full h-60" src={image} alt="Shoes" />
         </figure>
