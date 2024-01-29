@@ -10,7 +10,9 @@ const Blogs = () => {
   } = useQuery({
     queryKey: ["blog"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/blogs");
+      const res = await fetch(
+        "https://blog-applcation-server.vercel.app/blogs"
+      );
       return res.json();
     },
   });
@@ -18,7 +20,7 @@ const Blogs = () => {
   //delete blog functionality
   const handleDelete = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/blogs/${id}`, {
+    fetch(`https://blog-applcation-server.vercel.app/blogs/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

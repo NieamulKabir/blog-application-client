@@ -14,7 +14,9 @@ const BlogDetails = () => {
   const { data: blogsDetails = {} } = useQuery({
     queryKey: ["blogDetails", id],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/blogs/${id}`);
+      const res = await fetch(
+        `https://blog-applcation-server.vercel.app/blogs/${id}`
+      );
       return res.json();
     },
   });
@@ -22,7 +24,9 @@ const BlogDetails = () => {
   const { data: allComments = [], refetch } = useQuery({
     queryKey: ["allComments"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/comments`);
+      const res = await fetch(
+        `https://blog-applcation-server.vercel.app/comments`
+      );
       return res.json();
     },
   });
@@ -37,7 +41,7 @@ const BlogDetails = () => {
     };
     console.log(value);
 
-    const url = `http://localhost:5000/comment`;
+    const url = `https://blog-applcation-server.vercel.app/comment`;
     axios.post(url, value).then((res) => {
       if (res.data.insertedId) {
         toast("Added successfully");

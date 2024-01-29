@@ -13,8 +13,8 @@ const AddBlog = () => {
       description: data.description,
       image: data.image,
     };
-    
-    const url = `http://localhost:5000/blogs`;
+
+    const url = `https://blog-applcation-server.vercel.app/blogs`;
     axios.post(url, blogData).then((res) => {
       if (res.data.insertedId) {
         toast.success("Added successfully");
