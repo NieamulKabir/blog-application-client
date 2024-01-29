@@ -9,7 +9,6 @@ import BlogComment from "../../components/BlogComment/BlogComment";
 
 const BlogDetails = () => {
   let { id } = useParams();
-  
 
   // get blogDetails by id
   const { data: blogsDetails = {} } = useQuery({
@@ -19,15 +18,25 @@ const BlogDetails = () => {
       return res.json();
     },
   });
+  //get all comment
+  const { data: allComments = [], refetch } = useQuery({
+    queryKey: ["allComments"],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/comments`);
+      return res.json();
+    },
+  });
 
   //post comment in dataBase
   const { register, handleSubmit, reset } = useForm();
-  const onSubmit = () => {
+  const onSubmit = (data) => {
     const blogId = id;
     const value = {
       blogId,
       comment: data.comment,
     };
+    console.log(value);
+
     const url = `http://localhost:5000/comment`;
     axios.post(url, value).then((res) => {
       if (res.data.insertedId) {
@@ -38,16 +47,6 @@ const BlogDetails = () => {
     });
   };
 
-  //get all comment
-  const { data: allComments = [], refetch } = useQuery({
-    queryKey: ["allComments"],
-    queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/comments`);
-      return res.json();
-    },
-  });
-  
- 
   //filter comment by blogId
   const blogComments = allComments?.data?.filter(
     (blogComment) => blogComment.blogId === id
@@ -79,7 +78,7 @@ const BlogDetails = () => {
   //   const handleRemove=(id)=>{
   // let temp =
   //   }
-  
+
   return (
     <div className="pt-28 pb-10 text-white">
       <div className="card card-compact w-3/4 mx-auto bg-gray-800 shadow-xl">
@@ -96,7 +95,6 @@ const BlogDetails = () => {
               >
                 BookMark
               </button>
-             
             </div>
           </div>
           <p className="text-green-600 font-mono font-bold">
