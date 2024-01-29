@@ -33,7 +33,7 @@ const AddBlog = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="form-control w-full ">
-            <label className="label">
+            <label className="label text-black">
               <span className="label-text text-lg font-semibold text-white">
                 Blog Name
               </span>
@@ -43,7 +43,7 @@ const AddBlog = () => {
               name="title"
               type="text"
               placeholder="Type here"
-              className="input input-bordered w-full "
+              className="input input-bordered w-full text-black"
             />
 
             <label className="label">
@@ -56,7 +56,7 @@ const AddBlog = () => {
               name="author"
               type="text"
               placeholder="Type here"
-              className="input input-bordered w-full "
+              className="input input-bordered w-full text-black"
             />
 
             <label className="label">
@@ -69,7 +69,7 @@ const AddBlog = () => {
               name="image"
               type="text"
               placeholder="Type here"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full text-black"
             />
 
             <label className="label">
@@ -82,7 +82,7 @@ const AddBlog = () => {
               name="description"
               type="text"
               placeholder="Type here"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full text-black"
             />
           </div>
 

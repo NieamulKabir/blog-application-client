@@ -1,7 +1,12 @@
+
 import { NavLink } from "react-router-dom";
 
-const BlogCard = ({ blog }) => {
-  const { _id,title, image, description } = blog;
+
+const BlogCard = ({ blog,handleDelete }) => {
+  const { _id, title, image, description } = blog;
+
+ 
+
   return (
     <div>
       <div className="card card-compact  bg-slate-700 shadow-xl cursor-pointer md:h-[500px]">
@@ -14,8 +19,16 @@ const BlogCard = ({ blog }) => {
           <p>{description.slice(0, 150)}...</p>
           <div className="card-actions justify-end">
             <NavLink to={`/blogs/${_id}`}>
-            <button className="btn bg-gray-700 text-white hover:bg-slate-600">See More..</button>
+              <button className="btn bg-gray-700 text-white hover:bg-slate-600">
+                See More..
+              </button>
             </NavLink>
+            <button
+              onClick={() => handleDelete(_id)}
+              className="btn btn-primary"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>

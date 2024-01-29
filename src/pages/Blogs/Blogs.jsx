@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import BlogCard from "../../components/BlogCard/BlogCard";
+import toast from "react-hot-toast";
 
 const Blogs = () => {
   const {
@@ -13,14 +14,30 @@ const Blogs = () => {
       return res.json();
     },
   });
- 
+  const handleDelete = (id) => {
+    console.log(id);
+    fetch(`http://localhost:5000/blogs/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+         
+          toast.success("Blog Deleted Successfully");
+          refetch()
+        }
+      })
+      .catch((er) => {
+        toast.error("Blog Not Deleted");
+      });
+  };
   return (
     <div className="bg-gray-600 text-white font-mono py-16">
       <h1 className="text-center text-3xl py-6 font-bold">Our Web-Dev Blogs</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 w-3/4 mx-auto gap-10">
         {blogs?.data?.map((blog) => (
-          <BlogCard key={blog._id} blog={blog} />
+          <BlogCard key={blog._id} blog={blog} handleDelete={handleDelete} />
         ))}
       </div>
     </div>

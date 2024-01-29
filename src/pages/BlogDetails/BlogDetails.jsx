@@ -9,6 +9,7 @@ import BlogComment from "../../components/BlogComment/BlogComment";
 
 const BlogDetails = () => {
   let { id } = useParams();
+  
 
   // get blogDetails by id
   const { data: blogsDetails = {} } = useQuery({
@@ -45,40 +46,40 @@ const BlogDetails = () => {
       return res.json();
     },
   });
-
+  
+ 
   //filter comment by blogId
   const blogComments = allComments?.data?.filter(
     (blogComment) => blogComment.blogId === id
   );
 
-  let wishlist= JSON.parse(localStorage.getItem("wishlist"))
+  let wishlist = JSON.parse(localStorage.getItem("wishlist"));
   const handleBookMark = (id) => {
-    
-   if(wishlist.length==0){
-    wishlist.push(w)
-   }
-  
+    if (wishlist.length == 0) {
+      wishlist.push(w);
     }
-    // const prevBookmark = localStorage.getItem("bookmark");
-    // const oldBookmark = JSON.parse(prevBookmark);
-    // if (oldBookmark) {
-    //   const isExist = oldBookmark.find((p) => p.blogId === blogId);
-    //   if (isExist) {
-    //    localStorage.removeItem(isExist)
-    //   } else {
-    //     localStorage.setItem(
-    //       "bookmark",
-    //       JSON.stringify([...oldBookmark, info])
-    //     );
-    //   }
-    // } else {
-    //   localStorage.setItem("bookmark", JSON.stringify({ info }));
-    //   console.log("nai");
-    // }
+  };
+  // const prevBookmark = localStorage.getItem("bookmark");
+  // const oldBookmark = JSON.parse(prevBookmark);
+  // if (oldBookmark) {
+  //   const isExist = oldBookmark.find((p) => p.blogId === blogId);
+  //   if (isExist) {
+  //    localStorage.removeItem(isExist)
+  //   } else {
+  //     localStorage.setItem(
+  //       "bookmark",
+  //       JSON.stringify([...oldBookmark, info])
+  //     );
+  //   }
+  // } else {
+  //   localStorage.setItem("bookmark", JSON.stringify({ info }));
+  //   console.log("nai");
+  // }
+
+  //   const handleRemove=(id)=>{
+  // let temp =
+  //   }
   
-//   const handleRemove=(id)=>{
-// let temp = 
-//   }
   return (
     <div className="pt-28 pb-10 text-white">
       <div className="card card-compact w-3/4 mx-auto bg-gray-800 shadow-xl">
@@ -88,12 +89,15 @@ const BlogDetails = () => {
         <div className="card-body">
           <div className="flex justify-between items-center">
             <h2 className="card-title text-3xl">{blogsDetails?.title}</h2>
-            <button
-              onClick={handleBookMark}
-              className="btn bg-gray-700 text-white hover:bg-slate-800"
-            >
-              BookMark
-            </button>
+            <div>
+              <button
+                onClick={handleBookMark}
+                className="btn bg-gray-700 text-white hover:bg-slate-800"
+              >
+                BookMark
+              </button>
+             
+            </div>
           </div>
           <p className="text-green-600 font-mono font-bold">
             {" "}
