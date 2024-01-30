@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import toast from "react-hot-toast";
+import Loading from "../../components/Loading/Loading";
 
 const Blogs = () => {
   const {
@@ -34,6 +35,10 @@ const Blogs = () => {
         toast.error("Blog Not Deleted");
       });
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="bg-gray-600 text-white font-mono py-16">

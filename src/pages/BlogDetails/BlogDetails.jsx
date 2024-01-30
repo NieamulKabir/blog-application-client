@@ -6,12 +6,13 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import BlogComment from "../../components/BlogComment/BlogComment";
+import Loading from "../../components/Loading/Loading";
 
 const BlogDetails = () => {
   let { id } = useParams();
 
   // get blogDetails by id
-  const { data: blogsDetails = {} } = useQuery({
+  const { data: blogsDetails = {} , isLoading: loading,} = useQuery({
     queryKey: ["blogDetails", id],
     queryFn: async () => {
       const res = await fetch(
@@ -56,26 +57,7 @@ const BlogDetails = () => {
     (blogComment) => blogComment.blogId === id
   );
 
-  //wishlist functionality
-  // const handleAddWishlist = () => {
-  //   const info = {
-  //     id,
-  //     wishlist: "true",
-  //   };
 
-  //   const prevWishlist = JSON.parse(localStorage.getItem("wishlist"));
-  //   console.log(prevWishlist);
-  //   if (prevWishlist) {
-  //     const isExist = prevWishlist?.find((w) => w.id === id);
-  //     console.log(isExist);
-  //     if (isExist) {
-  //       return JSON.stringify(localStorage.removeItem(isExist));
-  //     }
-  //     localStorage.setItem("wishlist", JSON.stringify([...prevWishlist, info]));
-  //   } else {
-  //     localStorage.setItem("wishlist", JSON.stringify([info]));
-  //   }
-  // };
   const handleAddWishlist = () => {
     const info = {
       id,
@@ -100,6 +82,10 @@ const BlogDetails = () => {
       localStorage.setItem("wishlist", JSON.stringify([info]));
     }
   };
+
+  if(loading){
+    return <Loading />
+  }
 
   return (
     <div className="pt-28 pb-10 text-white">
